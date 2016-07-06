@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+sourceSets.main.java.srcDirs = ["src/"]
+
+repositories {
+    jcenter()
+}
+
+// Declare variables
+ext {
+	kryonetVersion = '2.22.0-RC1'
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    testCompile 'junit:junit:4.12'
+    
+    compile "com.esotericsoftware:kryonet:$kryonetVersion"
+}
+
+task dist(type: Jar) {
+    from files(sourceSets.main.output.classesDir)
+    from files(sourceSets.main.output.resourcesDir)
+    from { configurations.compile.collect { zipTree(it) } }
+
+    manifest {
+        
+    }
+}
