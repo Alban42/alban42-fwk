@@ -1,6 +1,5 @@
 apply plugin: 'java'
 
-sourceSets.main.java.srcDirs = ["src/"]
 
 repositories {
     jcenter()
@@ -16,14 +15,4 @@ dependencies {
     testCompile 'junit:junit:4.12'
     
     compile "com.esotericsoftware:kryonet:$kryonetVersion"
-}
-
-task dist(type: Jar) {
-    from files(sourceSets.main.output.classesDir)
-    from files(sourceSets.main.output.resourcesDir)
-    from { configurations.compile.collect { zipTree(it) } }
-
-    manifest {
-        
-    }
 }
