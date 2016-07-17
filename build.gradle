@@ -23,3 +23,8 @@ jar {
     baseName = 'alban42-fwk'
     version = '0.1.2'
 }
+
+task('sourcesJar', type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
