@@ -14,11 +14,13 @@ public class SecurityTest {
 
     @Test
     public void encryptDecrypt() throws Exception {
-        final Security security = new Security(1024);
+        final Security security = new Security();
+        security.generateKeys(1024);
+
         final String messageToEncrypt = "Testing message !!!";
 
-        final BigInteger encryptedMessage = security.encrypt(messageToEncrypt);
-        final String decryptedMessage = security.decrypt(encryptedMessage);
+        final BigInteger encryptedMessage = Security.encrypt(messageToEncrypt, security.getPublicKey());
+        final String decryptedMessage = Security.decrypt(encryptedMessage, security.getPrivateKey());
 
         Assert.assertTrue(messageToEncrypt.equals(decryptedMessage));
     }
