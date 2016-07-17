@@ -9,13 +9,13 @@ repositories {
 
 // Declare variables
 ext {
-    kryonetVersion = '2.22.0-RC1'
-    junitVersion = '4.12'
+    kryonetVersion = "2.22.0-RC1"
+    junitVersion = "4.12"
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    testCompile 'junit:junit:$junitVersion'
+    testCompile "junit:junit:$junitVersion"
     compile "com.esotericsoftware:kryonet:$kryonetVersion"
 }
 
