@@ -1,5 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'maven'
 
 sourceSets.main.java.srcDirs = ["src/"]
 
@@ -10,21 +9,16 @@ repositories {
 // Declare variables
 ext {
     kryonetVersion = "2.22.0-RC1"
-    junitVersion = "4.12"
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    testCompile "junit:junit:$junitVersion"
+    testCompile 'junit:junit:4.12'
+
     compile "com.esotericsoftware:kryonet:$kryonetVersion"
 }
 
 jar {
     baseName = 'alban42-fwk'
     version = '0.1.2'
-}
-
-task('sourcesJar', type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
 }
