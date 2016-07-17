@@ -1,8 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'maven'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceSets.main.java.srcDirs = ["src/"]
 
 repositories {
     jcenter()
@@ -10,13 +9,13 @@ repositories {
 
 // Declare variables
 ext {
-	kryonetVersion = '2.22.0-RC1'
+    kryonetVersion = '2.22.0-RC1'
+    juniVersion = '4.12'
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    testCompile 'junit:junit:4.12'
-    
+    testCompile 'junit:junit:$junitVersion'
     compile "com.esotericsoftware:kryonet:$kryonetVersion"
 }
 
