@@ -10,6 +10,6 @@ import com.alban42.network.register.objects.packet.Packet;
  */
 public interface ICaller {
 
-	public void responseReceived(Packet response);
+    void responseReceived(Packet response);
 
 }

@@ -10,19 +10,19 @@ import java.util.UUID;
  */
 public abstract class Packet {
 
-	/**
-	 * A random unique ID.
-	 */
-	private final String id;
+    /**
+     * A random unique ID.
+     */
+    private final String id;
 
-	public Packet() {
-		id = UUID.randomUUID().toString();
-	}
+    public Packet() {
+        id = UUID.randomUUID().toString();
+    }
 
-	/**
-	 * @return the id
-	 */
-	public String getPacketId() {
-		return id;
-	}
+    /**
+     * @return the id
+     */
+    public String getPacketId() {
+        return id;
+    }
 }

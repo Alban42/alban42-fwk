@@ -24,13 +24,13 @@ public abstract class ServerLogic implements Runnable {
     @Override
     public void run() {
         while (!this.stop) {
-        	execute();
+            execute();
         }
     }
 
     protected abstract void execute();
 
-	public void stop() {
+    public void stop() {
         this.stop = true;
     }
 }

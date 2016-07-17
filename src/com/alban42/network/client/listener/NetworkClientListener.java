@@ -3,13 +3,13 @@
  */
 package com.alban42.network.client.listener;
 
-import java.sql.Connection;
-
 import com.alban42.network.client.NetworkClient;
 import com.alban42.network.register.objects.ICaller;
 import com.alban42.network.register.objects.packet.Packet;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
+
+import java.sql.Connection;
 
 /**
  * This class is the listener of {@link NetworkClient}. All the interactions with the
@@ -19,45 +19,55 @@ import com.esotericsoftware.minlog.Log;
  */
 public abstract class NetworkClientListener extends Listener {
 
-	private final NetworkClient network;
+    private final NetworkClient network;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param network
-	 *            The parent of the listener.
-	 */
-	public NetworkClientListener(final NetworkClient network) {
-		this.network = network;
-	}
+    /**
+     * Constructor.
+     *
+     * @param network The parent of the listener.
+     */
+    public NetworkClientListener(final NetworkClient network) {
+        this.network = network;
+    }
 
-	private void callback(final Packet response) {
-		final ICaller caller = network.getPackets().get(response.getPacketId());
-		if (caller != null) {
-			network.getPackets().remove(response.getPacketId());
-			caller.responseReceived(response);
-		}
-	}
+    /**
+     * If the packet expect a callback when the server respond, then the {@link ICaller#responseReceived(Packet)} method is called.
+     *
+     * @param response the response packet.
+     */
+    private void callback(final Packet response) {
+        final ICaller caller = network.getPackets().get(response.getPacketId());
+        if (caller != null) {
+            network.getPackets().remove(response.getPacketId());
+            caller.responseReceived(response);
+        }
+    }
 
-	public void connected(final Connection arg0) {
-		Log.info("Connected !");
-		network.connected = true;
-	}
+    public void connected(final Connection connection) {
+        Log.info("Connected to the server !");
+        network.connected = true;
+    }
 
-	public void disconnected(final Connection arg0) {
-		Log.info("Disconnected !");
-		network.connected = false;
-	}
+    public void disconnected(final Connection connection) {
+        Log.info("Disconnected from the server !");
+        network.connected = false;
+    }
 
-	public void received(final Connection connection, final Object object) {
-		if (object instanceof Packet) {
-			final Packet response = (Packet) object;
+    public void received(final Connection connection, final Object object) {
+        if (object instanceof Packet) {
+            final Packet response = (Packet) object;
 
-			execute(object);
+            execute(connection, response);
 
-			callback(response);
-		}
-	}
+            callback(response);
+        }
+    }
 
-	protected abstract void execute(Object objectReceived);
+    /**
+     * When the client receive a {@link Packet} then this method is called.
+     *
+     * @param connection the connection from whom the packet is sent
+     * @param response   the response packet.
+     */
+    protected abstract void execute(Connection connection, Packet response);
 }

@@ -1,14 +1,14 @@
 package com.alban42.network.server.listener;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.alban42.network.register.ConnectionRunner;
 import com.alban42.network.register.RunnerFactory;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class NetworkServerListener extends Listener {
 
@@ -18,18 +18,21 @@ public abstract class NetworkServerListener extends Listener {
     private RunnerFactory factory;
 
     /**
-     * @param server
+     * Constructor.
+     *
+     * @param factory the factory for creating {@link ConnectionRunner}.
      */
     public NetworkServerListener(RunnerFactory factory) {
         super();
         this.connections = new HashMap<>();
+        this.factory = factory;
     }
 
     @Override
     public void connected(final Connection connection) {
         Log.info(NetworkServerListener.TAG, "New client connected ! " + connection.getID());
-        final ConnectionRunner runner = factory.newRunner();
-		this.connections.put(connection.getID(), runner);
+        final ConnectionRunner runner = factory.newRunner(connection.getID());
+        this.connections.put(connection.getID(), runner);
         new Thread(runner).start();
         super.connected(connection);
     }
@@ -40,8 +43,8 @@ public abstract class NetworkServerListener extends Listener {
         Log.info(NetworkServerListener.TAG, "Client disconnected ! " + connectionId);
         final ConnectionRunner runner = this.connections.get(connectionId);
         if (runner != null) {
-            // stop the runner thread
-        	runner.stop();
+            // stop the runner
+            runner.stop();
             // remove the runner from the list of runners
             this.connections.remove(connectionId);
         }
