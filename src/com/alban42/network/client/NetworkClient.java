@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class provide an easy way to send packet to the server.<br/>
+ * This class provide an easy way to send packet to the server.
  * This class is an Singleton, {@link NetworkClient#INSTANCE} must be used to call any
- * method of this class.<br/>
+ * method of this class.
  * The {@link NetworkClientListener} is used as the listener of the responses of by
  * the server.
  *

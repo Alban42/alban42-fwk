@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 /**
- * Simple RSA algorithm implementation.<br/>
+ * Simple RSA algorithm implementation.
  * Taken from http://www.java2s.com/Code/Java/Security/SimpleRSApublickeyencryptionalgorithmimplementation.htm and adapted by Alban.
  *
  * @author Alban
