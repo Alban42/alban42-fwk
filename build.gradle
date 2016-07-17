@@ -10,7 +10,7 @@ repositories {
 // Declare variables
 ext {
     kryonetVersion = '2.22.0-RC1'
-    juniVersion = '4.12'
+    junitVersion = '4.12'
 }
 
 // In this section you declare the dependencies for your production and test code
