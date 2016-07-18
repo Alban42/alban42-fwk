@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 
 /**
  * Simple RSA algorithm implementation.
- * Taken from http://www.java2s.com/Code/Java/Security/SimpleRSApublickeyencryptionalgorithmimplementation.htm and adapted by Alban.
+ * Taken from <a href="http://www.java2s.com/Code/Java/Security/SimpleRSApublickeyencryptionalgorithmimplementation.htm">www.java2s.com</a> and adapted by Alban.
  *
  * @author Alban
  */
@@ -78,10 +78,16 @@ public class Security {
         return encrypt(new BigInteger(message.getBytes()), publicKey);
     }
 
+    /**
+     * @return the private generated {@link Key}.
+     */
     public Key getPrivateKey() {
         return privateKey;
     }
 
+    /**
+     * @return the public generated {@link Key}.
+     */
     public Key getPublicKey() {
         return publicKey;
     }

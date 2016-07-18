@@ -81,7 +81,7 @@ public class NetworkServer {
      */
     public void stop() {
         server.stop();
-        Log.info("[" + TAG + "] Server Stoped !");
+        Log.info("[" + TAG + "] Server Stopped !");
         if (serverLogic != null) {
             serverLogic.stop();
             Log.info("[" + serverLogic.getClass().getSimpleName() + "] Stoped !");

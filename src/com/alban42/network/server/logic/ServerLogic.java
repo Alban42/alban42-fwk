@@ -14,7 +14,9 @@ public abstract class ServerLogic implements Runnable {
     private boolean stop;
 
     /**
-     * @param server
+     * Constructor.
+     *
+     * @param server the server associated to the {@link ServerLogic}.
      */
     public ServerLogic(final Server server) {
         this.server = server;
@@ -28,8 +30,14 @@ public abstract class ServerLogic implements Runnable {
         }
     }
 
+    /**
+     * Method called into the while loop of the thread (loop until {@link #stop()} is called).
+     */
     protected abstract void execute();
 
+    /**
+     * Stop the thread loop.
+     */
     public void stop() {
         this.stop = true;
     }

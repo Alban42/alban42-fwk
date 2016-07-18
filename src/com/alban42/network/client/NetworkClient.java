@@ -16,8 +16,6 @@ import java.util.Map;
 
 /**
  * This class provide an easy way to send packet to the server.
- * This class is an Singleton, {@link NetworkClient#INSTANCE} must be used to call any
- * method of this class.
  * The {@link NetworkClientListener} is used as the listener of the responses of by
  * the server.
  *
@@ -25,7 +23,6 @@ import java.util.Map;
  */
 public class NetworkClient {
 
-    public static final NetworkClient INSTANCE = new NetworkClient();
     public static final int DEFAULT_TCP_PORT = 27960;
     public static final int DEFAULT_UDP_PORT = 27961;
 
@@ -34,9 +31,9 @@ public class NetworkClient {
     public boolean connected;
 
     /**
-     * Constructor that initialise
+     * Constructor.
      */
-    private NetworkClient() {
+    public NetworkClient() {
         connected = false;
         client = new Client();
         packets = new HashMap<>();

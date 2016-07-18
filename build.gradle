@@ -2,6 +2,8 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 sourceSets.main.java.srcDirs = ["src/"]
+sourceSets.test.java.srcDirs = ["test/"]
+
 
 repositories {
     jcenter()
@@ -10,6 +12,8 @@ repositories {
 // Declare variables
 ext {
     kryonetVersion = "2.22.0-RC1"
+    reflectionsVersion = "0.9.9"
+    validationVersion = "1.1.0.Final"
 }
 
 // In this section you declare the dependencies for your production and test code
@@ -17,6 +21,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile "com.esotericsoftware:kryonet:$kryonetVersion"
+    compile "org.reflections:reflections:$reflectionsVersion"
+    compile "javax.validation:validation-api:$validationVersion"
 }
 
 jar {

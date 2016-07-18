@@ -17,10 +17,16 @@ public class Key {
         this.key = key;
     }
 
+    /**
+     * @return the encryption module (used for encrypt and decrypt messages).
+     */
     public BigInteger getEncryptionModule() {
         return encryptionModule;
     }
 
+    /**
+     * @return the key.
+     */
     public BigInteger getKey() {
         return key;
     }
