@@ -78,7 +78,7 @@ public abstract class NetworkServerListener extends Listener {
         if (object instanceof Packet) {
             final Packet packet = (Packet) object;
 
-            execute(connection, packet);
+            executeWhenReceived(connection, packet);
         }
     }
 
@@ -88,5 +88,5 @@ public abstract class NetworkServerListener extends Listener {
      * @param connection the connection from whom the packet is sent
      * @param packet     the packet.
      */
-    protected abstract void execute(Connection connection, Packet packet);
+    protected abstract void executeWhenReceived(Connection connection, Packet packet);
 }

@@ -25,7 +25,7 @@ public abstract class ConnectionRunner implements Runnable {
     public void run() {
         Log.info("Thread started for connection " + connectionID);
         while (!this.stop) {
-            // Call the execute method that will be implemented by the implementation of this abstract class
+            // Call the executeWhenReceived method that will be implemented by the implementation of this abstract class
             execute();
         }
         Log.info("Thread stopped for connection " + connectionID);
