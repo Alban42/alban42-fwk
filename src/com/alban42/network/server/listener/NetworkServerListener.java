@@ -11,6 +11,10 @@ import com.esotericsoftware.minlog.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The listener used by the {@link com.alban42.network.server.NetworkServer}.
+ * All interaction with the server will be catched by this class.
+ */
 public abstract class NetworkServerListener extends Listener {
 
     private static final String TAG = NetworkServerListener.class.getSimpleName();
@@ -19,9 +23,16 @@ public abstract class NetworkServerListener extends Listener {
     private RunnerFactory factory;
 
     /**
+     * Default constructor. With this constructor, the {@link RunnerFactory} is null.
+     */
+    public NetworkServerListener() {
+        this(null);
+    }
+
+    /**
      * Constructor.
      *
-     * @param factory the factory for creating {@link ConnectionRunner}.
+     * @param factory the {@link RunnerFactory} that will be used for creating {@link ConnectionRunner}.
      */
     public NetworkServerListener(RunnerFactory factory) {
         super();
@@ -36,9 +47,14 @@ public abstract class NetworkServerListener extends Listener {
     @Override
     public void connected(final Connection connection) {
         Log.info(NetworkServerListener.TAG, "New client connected ! " + connection.getID());
-        final ConnectionRunner runner = factory.newRunner(connection.getID());
+        ConnectionRunner runner = null;
+        if (factory != null) {
+            runner = factory.newRunner(connection.getID());
+            if (runner != null) {
+                new Thread(runner).start();
+            }
+        }
         this.activeConnections.put(connection.getID(), runner);
-        new Thread(runner).start();
         super.connected(connection);
     }
 

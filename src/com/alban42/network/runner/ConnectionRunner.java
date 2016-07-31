@@ -2,6 +2,11 @@ package com.alban42.network.runner;
 
 import com.esotericsoftware.minlog.Log;
 
+/**
+ * The connection runner represent is the logic that will be executed when a client is connected to the server.
+ * The {@link ConnectionRunner} start a loop when the client is connected until it's disconnected.
+ * The {@link #execute()} method is called inside the loop.
+ */
 public abstract class ConnectionRunner implements Runnable {
 
     private final Integer connectionID;

@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.alban42.network.client.listener;
 
 import com.alban42.network.client.NetworkClient;

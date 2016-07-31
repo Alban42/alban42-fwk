@@ -1,5 +1,9 @@
 package com.alban42.network.runner;
 
+/**
+ * This class is a factory for the creation of a new {@link ConnectionRunner}.
+ * Used by the {@link com.alban42.network.server.listener.NetworkServerListener} when a client connect to the {@link com.alban42.network.server.NetworkServer}.
+ */
 @FunctionalInterface
 public interface RunnerFactory {
 
