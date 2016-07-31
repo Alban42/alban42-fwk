@@ -1,4 +1,7 @@
-package com.alban42.classmanager.strategy;
+package com.alban42.classmanager.strategy.first;
+
+import com.alban42.classmanager.strategy.ClassImplementationStrategy;
+import com.alban42.classmanager.strategy.mvi.MostValuableImplementation;
 
 import java.util.Set;
 

@@ -15,7 +15,7 @@ import java.util.UUID;
 /**
  * @author Alban
  */
-public class ClassRegister {
+public abstract class ClassRegister {
 
     // This registers objects that are going to be sent over the network.
     public void register(final EndPoint endPoint) {
@@ -29,5 +29,17 @@ public class ClassRegister {
         // Special classes
         kryo.register(Packet.class);
         kryo.register(Message.class);
+
+        // User specific classes
+        if (registerSpecificClasses() != null && !registerSpecificClasses().isEmpty()) {
+            registerSpecificClasses().parallelStream().forEach(x -> kryo.register(x));
+        }
     }
+
+    /**
+     * Add here specifics classes of the objects you need to send over the network.
+     *
+     * @return the list of the classes to be registered.
+     */
+    public abstract List<Class> registerSpecificClasses();
 }

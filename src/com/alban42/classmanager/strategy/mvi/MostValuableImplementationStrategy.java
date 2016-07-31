@@ -1,4 +1,6 @@
-package com.alban42.classmanager.strategy;
+package com.alban42.classmanager.strategy.mvi;
+
+import com.alban42.classmanager.strategy.ClassImplementationStrategy;
 
 import java.util.Comparator;
 import java.util.Set;

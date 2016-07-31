@@ -1,6 +1,6 @@
 package com.alban42.classmanager;
 
-import com.alban42.classmanager.strategy.MostValuableImplementation;
+import com.alban42.classmanager.strategy.mvi.MostValuableImplementation;
 
 @MostValuableImplementation(value = 2)
 public class Test3 implements ITest {

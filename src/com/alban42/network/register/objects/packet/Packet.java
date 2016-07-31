@@ -11,7 +11,7 @@ import java.util.UUID;
 public abstract class Packet {
 
     /**
-     * A random unique ID.
+     * A random unique ID for the packet.
      */
     private final String id;
 
@@ -20,7 +20,7 @@ public abstract class Packet {
     }
 
     /**
-     * @return the id
+     * @return the id of the packet sent/received.
      */
     public String getPacketId() {
         return id;

@@ -7,9 +7,25 @@ package com.alban42.properties;
  */
 public interface IProperties {
 
-    IProperties[] values();
+    /**
+     * @return the file name of the property file.
+     */
+    static String getPropertyFile() {
+        return "alban42.properties";
+    }
 
-    String key();
+    /**
+     * @return the name of the property (aka the key)
+     */
+    String name();
 
+    /**
+     * @return the default value of the property (to be initialize)
+     */
     String defaultValue();
+
+    /**
+     * @return the comment associated with the property.
+     */
+    String getComment();
 }

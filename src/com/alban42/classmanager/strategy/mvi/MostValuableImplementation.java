@@ -1,4 +1,4 @@
-package com.alban42.classmanager.strategy;
+package com.alban42.classmanager.strategy.mvi;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
