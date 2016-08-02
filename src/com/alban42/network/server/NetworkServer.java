@@ -6,6 +6,7 @@ import com.alban42.network.server.logic.ServerLogic;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 
 public class NetworkServer {
@@ -30,7 +31,11 @@ public class NetworkServer {
         this(DEFAULT_TCP_PORT, DEFAULT_UDP_PORT, listener, classRegister);
     }
 
-    public NetworkServer(final int tcpPort, final int udpPort, NetworkServerListener listener, ClassRegister classRegister) {
+    public NetworkServer(final int tcpPort, NetworkServerListener listener, ClassRegister classRegister) {
+        this(tcpPort, null, null, listener, classRegister);
+    }
+
+    public NetworkServer(final int tcpPort, final Integer udpPort, NetworkServerListener listener, ClassRegister classRegister) {
         this(tcpPort, udpPort, null, listener, classRegister);
     }
 
@@ -43,7 +48,7 @@ public class NetworkServer {
      * @param listener      the listener of the server
      * @param classRegister le class register.
      */
-    public NetworkServer(final int tcpPort, final int udpPort, ServerLogic serverLogic, NetworkServerListener listener, ClassRegister classRegister) {
+    public NetworkServer(final int tcpPort, @Nullable final Integer udpPort, @Nullable ServerLogic serverLogic, NetworkServerListener listener, ClassRegister classRegister) {
         server = new Server();
         classRegister.register(server);
         server.addListener(listener);

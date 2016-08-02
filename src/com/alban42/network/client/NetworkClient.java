@@ -10,6 +10,7 @@ import com.alban42.network.register.objects.packet.Packet;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.minlog.Log;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +40,11 @@ public class NetworkClient {
         packets = new HashMap<>();
     }
 
-    public void connect(String host, int tcpPort, int udpPort, ClassRegister classRegister, NetworkClientListener listener) throws IOException {
+    public void connect(String host, int tcpPort, ClassRegister classRegister, NetworkClientListener listener) throws IOException {
+        connect(host, tcpPort, null, classRegister, listener);
+    }
+
+    public void connect(String host, int tcpPort, @Nullable Integer udpPort, ClassRegister classRegister, NetworkClientListener listener) throws IOException {
         classRegister.register(client);
         client.addListener(listener);
         client.start();
