@@ -49,7 +49,11 @@ public class NetworkClient {
         client.addListener(listener);
         client.start();
         try {
-            client.connect(5000, host, tcpPort, udpPort);
+            if (udpPort != null) {
+                client.connect(5000, host, tcpPort, udpPort);
+            } else {
+                client.connect(5000, host, tcpPort);
+            }
         } catch (final IOException e) {
             Log.info("Cannot connect : " + e.getMessage());
             throw e;
