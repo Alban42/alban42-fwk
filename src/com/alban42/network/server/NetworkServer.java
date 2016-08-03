@@ -11,10 +11,9 @@ import java.io.IOException;
 
 public class NetworkServer {
 
+    public static final int DEFAULT_TCP_PORT = 27960;
+    public static final int DEFAULT_UDP_PORT = 27961;
     private static final String TAG = NetworkServerListener.class.getSimpleName();
-    private static final int DEFAULT_TCP_PORT = 27960;
-    private static final int DEFAULT_UDP_PORT = 27961;
-
     private final ServerLogic serverLogic;
     private final Thread serverLogicThread;
     private final Server server;
@@ -54,7 +53,11 @@ public class NetworkServer {
         server.addListener(listener);
         listener.server = server;
         try {
-            server.bind(tcpPort, udpPort);
+            if (udpPort != null) {
+                server.bind(tcpPort, udpPort);
+            } else {
+                server.bind(tcpPort);
+            }
         } catch (final IOException e) {
             e.printStackTrace();
             Log.error(e.getMessage());
