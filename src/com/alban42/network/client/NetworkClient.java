@@ -29,13 +29,11 @@ public class NetworkClient {
 
     private final Client client;
     private final Map<String, ICaller> packets;
-    public boolean connected;
 
     /**
      * Constructor.
      */
     public NetworkClient() {
-        connected = false;
         client = new Client();
         packets = new HashMap<>();
     }
@@ -58,7 +56,6 @@ public class NetworkClient {
             Log.info("Cannot connect : " + e.getMessage());
             throw e;
         }
-        connected = true;
     }
 
     /**
@@ -81,7 +78,7 @@ public class NetworkClient {
      * @return the connected
      */
     public boolean isConnected() {
-        return connected;
+        return client.isConnected();
     }
 
     /**
