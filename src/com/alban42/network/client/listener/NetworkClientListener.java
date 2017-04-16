@@ -42,12 +42,10 @@ public abstract class NetworkClientListener extends Listener {
 
     public void connected(final Connection connection) {
         Log.info("Connected to the server !");
-        network.connected = true;
     }
 
     public void disconnected(final Connection connection) {
         Log.info("Disconnected from the server !");
-        network.connected = false;
     }
 
     public void received(final Connection connection, final Object object) {
