@@ -45,7 +45,8 @@ public class NetworkClient {
     public void connect(String host, int tcpPort, @Nullable Integer udpPort, ClassRegister classRegister, NetworkClientListener listener) throws IOException {
         classRegister.register(client);
         client.addListener(listener);
-        client.start();
+//        client.start();
+        new Thread(client).start();
         try {
             if (udpPort != null) {
                 client.connect(5000, host, tcpPort, udpPort);
