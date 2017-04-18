@@ -32,7 +32,7 @@ public abstract class ClassRegister {
 
         // User specific classes
         if (registerSpecificClasses() != null && !registerSpecificClasses().isEmpty()) {
-            registerSpecificClasses().parallelStream().forEach(x -> kryo.register(x));
+            registerSpecificClasses().stream().forEach(x -> kryo.register(x));
         }
     }
 
