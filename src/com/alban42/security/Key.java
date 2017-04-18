@@ -11,10 +11,17 @@ public class Key {
 
     private BigInteger encryptionModule;
     private BigInteger key;
+    
+    /**
+     * Void constructor used for serializing (to be sended over the network).
+     */
+    public Key(){
+    	// Void
+    }
 
     public Key(final BigInteger encryptionModule, final BigInteger key) {
         this.encryptionModule = encryptionModule;
-        this.key = key;
+        this.key = key; 
     }
 
     /**

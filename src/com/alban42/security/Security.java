@@ -11,7 +11,8 @@ import java.security.SecureRandom;
  */
 public class Security {
 
-    private Key privateKey, publicKey;
+    private Key privateKey;
+    private Key publicKey;
 
     /**
      * Encrypt the given message in parameter and return the encrypted message.
