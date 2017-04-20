@@ -1,13 +1,14 @@
 package com.alban42.network.server;
 
+import java.io.IOException;
+
+import javax.annotation.Nullable;
+
 import com.alban42.network.register.ClassRegister;
 import com.alban42.network.server.listener.NetworkServerListener;
 import com.alban42.network.server.logic.ServerLogic;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
-
-import javax.annotation.Nullable;
-import java.io.IOException;
 
 public class NetworkServer {
 
@@ -31,7 +32,7 @@ public class NetworkServer {
 	}
 
 	public NetworkServer(final int tcpPort, NetworkServerListener listener, ClassRegister classRegister) {
-		this(tcpPort, DEFAULT_UDP_PORT, null, listener, classRegister);
+		this(tcpPort, tcpPort + 1, null, listener, classRegister);
 	}
 
 	public NetworkServer(final int tcpPort, final Integer udpPort, NetworkServerListener listener,
@@ -71,7 +72,7 @@ public class NetworkServer {
 			serverLogicThread = new Thread(serverLogic);
 		} else {
 			this.serverLogic = null;
-			this.serverLogicThread = null;
+			serverLogicThread = null;
 		}
 	}
 
